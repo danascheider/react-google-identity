@@ -8,6 +8,12 @@
   "license": "HL3-FULL",
   "private": false,
   "dependencies": {
-    "jest": "^28.1"
+    "react": "^17.0.0"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

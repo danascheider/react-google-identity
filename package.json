@@ -1,0 +1,13 @@
+{
+  "name": "react-google-identity",
+  "version": "0.1.0",
+  "description": "Library to support Sign In With Google in React",
+  "main": "src/sign-in-with-google.js",
+  "repository": "https://github.com/danascheider/react-google-identity",
+  "author": "Dana Scheider <dana.scheider@gmail.com>",
+  "license": "HL3-FULL",
+  "private": false,
+  "dependencies": {
+    "jest": "^28.1"
+  }
+}

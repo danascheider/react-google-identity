@@ -19,3 +19,7 @@ The HL3 is a modular license, enabling licensors to choose modules that are in l
 ## Contribute
 
 I am looking for community support and co-maintainers for this tool as I don't have the bandwidth or executive function to be consistent about maintaining it on my own. Pull requests are welcome.
+
+## Acknowledgements
+
+Thank you to @anthonyjgrove, author of the original [`react-google-login` library](https://github.com/anthonyjgrove/react-google-login), which was instrumental for figuring out how to implement this library.

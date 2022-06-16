@@ -10,20 +10,44 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "prettier ./src",
-    "lint:fix": "prettier --write ./src"
+    "lint": "prettier ./src ./__test__",
+    "lint:fix": "prettier --write ./src ./__test__",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack4": "^6.5.9",
+    "@storybook/cli": "^6.0.28",
+    "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/react": "^6.5.9",
+    "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.3.0",
+    "babel-loader": "^8.2.5",
     "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1",
+    "jsdom": "^19.0.0",
+    "msw": "^0.42.1",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "storybook": "^6.0.28"
   },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "jest": {
+    "clearMocks": true,
+    "testEnvironment": "jsdom"
   },
   "bugs": {
     "url": "https://github.com/danascheider/react-google-identity/issues"

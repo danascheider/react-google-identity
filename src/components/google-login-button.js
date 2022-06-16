@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const GoogleLoginButton = ({ onSuccess, onError, clientId }) => {
-  return <button>Sign In With Google</button>;
-};
+  return <button>Sign In With Google</button>
+}
 
-export default GoogleLoginButton;
+export default GoogleLoginButton

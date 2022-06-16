@@ -61,6 +61,13 @@
       "@babel/preset-react"
     ]
   },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "arrowParens": "avoid",
+    "jsxSingleQuote": true
+  },
   "bugs": {
     "url": "https://github.com/danascheider/react-google-identity/issues"
   },

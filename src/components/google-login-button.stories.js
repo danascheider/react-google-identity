@@ -1,8 +1,8 @@
-import GoogleLoginButton from "./google-login-button.js";
+import GoogleLoginButton from './google-login-button.js'
 
 export default {
-  title: "GoogleLoginButton",
+  title: 'GoogleLoginButton',
   component: GoogleLoginButton,
-};
+}
 
-export const Default = () => <GoogleLoginButton />;
+export const Default = () => <GoogleLoginButton />

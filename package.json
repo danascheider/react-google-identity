@@ -5,7 +5,7 @@
   "main": "src/sign-in-with-google.js",
   "repository": "https://github.com/danascheider/react-google-identity",
   "author": "Dana Scheider <dana.scheider@gmail.com>",
-  "license": "HL3-FULL",
+  "license": "SEE LICENSE IN LICENSE.md",
   "private": false,
   "dependencies": {
     "react": "^17.0.0"

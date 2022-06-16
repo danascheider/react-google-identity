@@ -3,17 +3,42 @@
   "version": "0.1.0",
   "description": "Library to support Sign In With Google in React",
   "main": "src/sign-in-with-google.js",
-  "repository": "https://github.com/danascheider/react-google-identity",
+  "repository": "https://github.com/danascheider/react-google-identity.git",
   "author": "Dana Scheider <dana.scheider@gmail.com>",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": false,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "prettier ./src",
+    "lint:fix": "prettier --write ./src"
+  },
   "dependencies": {
-    "react": "^17.0.0"
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "jest": "^28.1.1"
+    "jest": "^28.1.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.7.1"
   },
-  "scripts": {
-    "test": "jest"
-  }
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/danascheider/react-google-identity/issues"
+  },
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "google-login",
+    "google-signin",
+    "google-oauth2",
+    "sign-in-with-google",
+    "google-oauth"
+  ]
 }

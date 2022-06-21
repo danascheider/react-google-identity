@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import GoogleLoginButton from '../src/components/google-login-button'
+import GoogleLoginButton from '../src/components/google-login-button/google-login-button'
 
 describe('Google Login Button', () => {
   describe('with default props', () => {
@@ -15,7 +15,7 @@ describe('Google Login Button', () => {
     test('has correct text', () => {
       render(<GoogleLoginButton {...props} />)
       expect(screen.getByRole('button')).toHaveTextContent(
-        'Sign In With Google'
+        'Sign in with Google'
       )
     })
   })

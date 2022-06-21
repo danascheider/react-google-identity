@@ -1,0 +1,27 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 1px 0 rgba(0, 0, 0, 0.24);
+  padding: 0;
+  border-radius: 2;
+  border: 1px solid transparent;
+  font-size: 14;
+  font-weight: 500;
+  font-family: Roboto, sans-serif;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+}
+
+.root:hover {
+  background-color: #efefef;
+}
+
+.root:disabled {
+  background-color: #efefef;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.root:hover .icon {
+  background-color: #efefef;
+}

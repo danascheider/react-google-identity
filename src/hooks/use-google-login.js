@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import loadGapiScript from '../functions/load-gapi-script'
-import removeGapiScript from '../functions/remove-gapi-script'
+import loadGapiScript from '../functions/load-gapi-script.js'
+import removeGapiScript from '../functions/remove-gapi-script.js'
 
 const useGoogleLogin = ({
   onSuccess = () => {},
@@ -9,16 +9,14 @@ const useGoogleLogin = ({
   onRequest = () => {},
   onScriptLoadError,
   clientId,
-  loginHint,
   hostedDomain,
   fetchBasicProfile,
-  discoveryDocs,
-  uxMode,
   redirectUri,
-  accessType,
   staySignedIn,
   prompt,
   responseType,
+  pluginName,
+  uxMode = 'popup',
   autoload = false,
   cookiePolicy = 'single_host_origin',
   scope = 'profile email',
@@ -36,15 +34,13 @@ const useGoogleLogin = ({
 
     const params = {
       client_id: clientId,
-      cookiepolicy: cookiePolicy,
-      login_hint: loginHint,
-      hosted_domain: hostedDomain,
+      cookie_policy: cookiePolicy,
+      scope,
       fetch_basic_profile: fetchBasicProfile,
-      discoveryDocs,
+      hosted_domain: hostedDomain,
       ux_mode: uxMode,
       redirect_uri: redirectUri,
-      scope,
-      access_type: accessType,
+      plugin_name: pluginName,
     }
 
     if (responseType === 'code') params.access_type = 'offline'
@@ -54,7 +50,7 @@ const useGoogleLogin = ({
 
       if (GoogleAuth) {
         GoogleAuth.then(
-          resp => {
+          _resp => {
             if (mountedRef.current === false) return
 
             if (staySignedIn && GoogleAuth.isSignedIn.get()) {
@@ -71,20 +67,19 @@ const useGoogleLogin = ({
       } else {
         window.auth2 = window.gapi.auth2.init(params).then(
           resp => {
-            if (mountedRef.current === true) {
-              const isSignedIn = staySignedIn && resp.isSignedIn.get()
+            if (mountedRef.current === false) return
 
-              onAutoloadFinished(isSignedIn)
+            const isSignedIn = staySignedIn && resp.isSignedIn.get()
 
-              if (isSignedIn) {
-                handleSuccess(resp.currentUser.get())
-              }
+            onAutoloadFinished(isSignedIn)
+
+            if (isSignedIn) {
+              handleSuccess(resp.currentUser.get())
             }
           },
           err => {
-            onAutoloadFinished(false)(
-              onScriptLoadError && onScriptLoadError(err)
-            ) || onError(err)
+            onAutoloadFinished(false)
+            (onScriptLoadError && onScriptLoadError(err)) || onError(err)
           }
         )
       }
@@ -118,7 +113,7 @@ const useGoogleLogin = ({
     mountedRef.current = true
 
     loadGapiScript(document, scriptSrc, handleScriptLoadSuccess, err => {
-      ;(onScriptLoadError && onScriptLoadError(err)) || onError(err)
+      (onScriptLoadError && onScriptLoadError(err)) || onError(err)
     })
 
     return () => {
@@ -129,7 +124,7 @@ const useGoogleLogin = ({
 
   useEffect(() => {
     if (autoload) {
-      signIn()
+      signInWithGoogle()
     }
   }, [gapiScriptLoaded])
 

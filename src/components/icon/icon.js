@@ -34,6 +34,7 @@ const Icon = ({ active, className }) => (
 
 Icon.propTypes = {
   active: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 export default Icon

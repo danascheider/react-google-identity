@@ -7,14 +7,14 @@ const loadGapiScript = (document, src, onLoad, onError) => {
   js.async = true
   js.defer = true
 
+  js.onerror = e => onError(e)
+  js.onload = e => onLoad(e)
+
   if (script && script.parentNode) {
     script.parentNode.insertBefore(js, script)
   } else {
     document.head.appendChild(js)
   }
-
-  js.onerror = onError
-  js.onload = onLoad
 }
 
 export default loadGapiScript

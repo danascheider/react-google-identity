@@ -18,5 +18,10 @@ describe('Google Login Button', () => {
         'Sign in with Google'
       )
     })
+
+    test('matches snapshot', () => {
+      const button = render(<GoogleLoginButton {...props} />)
+      expect(button).toMatchSnapshot()
+    })
   })
 })

@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import useGoogleLogin from '../../hooks/use-google-login'
-import ButtonContent from '../button-content/button-content'
-import Icon from '../icon/icon'
+import useGoogleLogin from '../../hooks/use-google-login.js'
+import ButtonContent from '../button-content/button-content.js'
+import Icon from '../icon/icon.js'
 import lightStyles from './light-styles.module.css'
 import darkStyles from './dark-styles.module.css'
 
 const GoogleLoginButton = ({
   // useGoogleLogin params
-  accessType,
   autoload,
   clientId,
   cookiePolicy,
-  discoveryDocs,
   fetchBasicProfile,
   hostedDomain,
-  loginHint,
   onAutoloadFinished,
   onError,
   onRequest,
@@ -27,25 +25,23 @@ const GoogleLoginButton = ({
   scriptSrc,
   staySignedIn,
   uxMode,
-  // HTML params
+  pluginName,
+  // JSX params
   buttonText = 'Sign in with Google',
   children,
   className,
   disabled,
   icon,
   theme,
-  type,
+  type = 'button',
 }) => {
   const [active, setActive] = useState(false)
   const { gapiScriptLoaded, signInWithGoogle } = useGoogleLogin({
-    accessType,
     autoload,
     clientId,
     cookiePolicy,
-    discoveryDocs,
     fetchBasicProfile,
     hostedDomain,
-    loginHint,
     onAutoloadFinished,
     onError,
     onRequest,
@@ -57,6 +53,7 @@ const GoogleLoginButton = ({
     scriptSrc,
     staySignedIn,
     uxMode,
+    pluginName
   })
 
   const styles = theme == 'dark' ? darkStyles : lightStyles
@@ -64,7 +61,7 @@ const GoogleLoginButton = ({
   return (
     <button
       className={classNames(styles.root, className)}
-      type='button'
+      type={type}
       onMouseDown={() => setActive(true)}
       onMouseUp={() => setActive(false)}
       onMouseLeave={() => setActive(false)}
@@ -82,6 +79,29 @@ const GoogleLoginButton = ({
       </ButtonContent>
     </button>
   )
+}
+
+GoogleLoginButton.propTypes = {
+  autoload: PropTypes.bool,
+  clientId: PropTypes.string.isRequired,
+  cookiePolicy: PropTypes.string,
+  fetchBasicProfile: PropTypes.bool,
+  hostedDomain: PropTypes.string,
+  onAutoloadFinished: PropTypes.func,
+  onError: PropTypes.func,
+  onRequest: PropTypes.func,
+  onScriptLoadError: PropTypes.func,
+  onSuccess: PropTypes.func,
+  prompt: PropTypes.oneOf(['consent', 'select_account']),
+  scriptSrc: PropTypes.string,
+  staySignedIn: PropTypes.bool,
+  uxMode: PropTypes.oneOf(['popup', 'redirect']),
+  pluginName: PropTypes.string,
+  buttonText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  icon: PropTypes.bool,
+  theme: PropTypes.oneOf(['light', 'dark']),
 }
 
 export default GoogleLoginButton

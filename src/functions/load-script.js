@@ -1,4 +1,4 @@
-const loadGapiScript = (document, src, onLoad, onError) => {
+const loadScript = (document, src, onLoad, onError) => {
   const script = document.getElementsByTagName('script')[0]
 
   let js = document.createElement('script')
@@ -17,4 +17,4 @@ const loadGapiScript = (document, src, onLoad, onError) => {
   }
 }
 
-export default loadGapiScript
+export default loadScript

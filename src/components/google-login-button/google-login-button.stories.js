@@ -11,7 +11,7 @@ export const LightWithIcon = () => <GoogleLoginButton icon={true} />
 LightWithIcon.parameters = {
   mockData: [
     {
-      url: 'https://apis.google.com/js/platform.js',
+      url: 'accounts.google.com/gsi/client',
       method: 'GET',
       status: 200,
       response: {
@@ -25,7 +25,7 @@ export const LightWithoutIcon = () => <GoogleLoginButton icon={false} />
 LightWithoutIcon.parameters = {
   mockData: [
     {
-      url: 'https://apis.google.com/js/platform.js',
+      url: 'accounts.google.com/gsi/client',
       method: 'GET',
       status: 200,
       response: {
@@ -39,7 +39,7 @@ export const DarkWithIcon = () => <GoogleLoginButton icon={true} theme='dark' />
 DarkWithIcon.parameters = {
   mockData: [
     {
-      url: 'https://apis.google.com/js/platform.js',
+      url: 'accounts.google.com/gsi/client',
       method: 'GET',
       status: 200,
       response: {
@@ -55,7 +55,7 @@ export const DarkWithoutIcon = () => (
 DarkWithoutIcon.parameters = {
   mockData: [
     {
-      url: 'https://apis.google.com/js/platform.js',
+      url: 'accounts.google.com/gsi/client',
       method: 'GET',
       status: 200,
       response: {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import useGoogleLogin from '../../hooks/use-google-login.js'
@@ -8,80 +8,94 @@ import lightStyles from './light-styles.module.css'
 import darkStyles from './dark-styles.module.css'
 
 const GoogleLoginButton = ({
-  // useGoogleLogin params
-  autoload,
-  clientId,
-  cookiePolicy,
-  fetchBasicProfile,
-  hostedDomain,
-  onAutoloadFinished,
-  onError,
-  onRequest,
-  onScriptLoadError,
+  // useGoogleLogin params - see useGoogleLogin function for
+  // docs on what each param does
   onSuccess,
-  prompt,
-  redirectUri,
-  scope,
-  scriptSrc,
-  staySignedIn,
+  onError,
+  onScriptLoad,
+  onScriptLoadError,
+  nativeCallback,
+  allowedParentOrigin,
+  autoSelect,
+  clientId,
+  context,
+  intermediateIframeCloseCallback,
+  itpSupport,
+  loginUri,
+  nonce,
+  promptParentId,
+  stateCookieDomain,
+  cancelOnTapOutside,
   uxMode,
-  pluginName,
+  scriptSrc,
+  // Button options
+  buttonLocale,
+  buttonLogoAligment,
+  buttonShape,
+  buttonSize,
+  buttonText,
+  buttonTheme,
+  buttonType,
+  buttonWidth,
   // JSX params
-  buttonText = 'Sign in with Google',
-  children,
+  // The button ID and optional class name can be set to any values, however, you
+  // should not set either value to 'g_id_onload' or 'g_id_signin', which will cause
+  // the button to be rendered in HTML as well as JavaScript and could have some
+  // interesting side effects.
+  buttonParentId,
   className,
-  disabled,
-  icon,
-  theme,
-  type = 'button',
+  type = 'oneTap'
 }) => {
   const [active, setActive] = useState(false)
-  const { gapiScriptLoaded, signInWithGoogle } = useGoogleLogin({
-    autoload,
-    clientId,
-    cookiePolicy,
-    fetchBasicProfile,
-    hostedDomain,
-    onAutoloadFinished,
-    onError,
-    onRequest,
-    onScriptLoadError,
+  const {
+    scriptLoaded,
+    displayOneTapButton,
+    displaySignInButton,
+    signInWithGoogle
+  } = useGoogleLogin({
     onSuccess,
-    prompt,
-    redirectUri,
-    scope,
-    scriptSrc,
-    staySignedIn,
+    onError,
+    onScriptLoad,
+    onScriptLoadError,
+    nativeCallback,
+    allowedParentOrigin,
+    buttonLocale,
+    buttonLogoAligment,
+    buttonShape,
+    buttonSize,
+    buttonText,
+    buttonTheme,
+    buttonType,
+    buttonWidth,
+    clientId,
+    context,
+    intermediateIframeCloseCallback,
+    itpSupport,
+    loginUri,
+    nonce,
+    promptParentId,
+    stateCookieDomain,
+    autoSelect,
+    cancelOnTapOutside,
     uxMode,
-    pluginName
+    scriptSrc
   })
 
-  const styles = theme == 'dark' ? darkStyles : lightStyles
+  useEffect(() => {
+    if (autoSelect) signInWithGoogle()
+  }, [autoSelect, signInWithGoogle])
 
   return (
-    <button
-      className={classNames(styles.root, className)}
-      type={type}
-      onMouseDown={() => setActive(true)}
-      onMouseUp={() => setActive(false)}
-      onMouseLeave={() => setActive(false)}
-      disabled={disabled == true ? true : !gapiScriptLoaded}
+    <div
+      id={buttonParentId}
+      className={className}
     >
-      {icon && (
-        <Icon
-          className={theme === 'dark' ? null : styles.icon}
-          active={active || disabled}
-          key={1}
-        />
-      )}
-      <ButtonContent icon={icon} key={2}>
-        {children || buttonText}
-      </ButtonContent>
-    </button>
+    </div>
   )
 }
 
 GoogleLoginButton.propTypes = {
+  onSuccess: PropTypes.func,
   autoload: PropTypes.bool,
   clientId: PropTypes.string.isRequired,
   cookiePolicy: PropTypes.string,
